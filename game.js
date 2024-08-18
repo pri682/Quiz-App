@@ -1,5 +1,7 @@
 const questionElement = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const progressText = document.getElementById("ProgressText");
+const scoreText = document.getElementById("score");
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -32,7 +34,6 @@ const questions = [
         choice4: "alert('Hi, John');",
         answer: 4
     },
-    
     {
         question: "Which data structure uses LIFO (Last In, First Out) principle?",
         choice1: "Queue",
@@ -41,7 +42,6 @@ const questions = [
         choice4: "Linked List",
         answer: 2
     },
-    
     {
         question: "Which data structure uses FIFO (First In, First Out) principle?",
         choice1: "Stack",
@@ -50,7 +50,6 @@ const questions = [
         choice4: "Tree",
         answer: 2
     },
-    
     {
         question: "In which data structure can you perform fast insertions and deletions at both ends?",
         choice1: "Queue",
@@ -59,7 +58,6 @@ const questions = [
         choice4: "Array",
         answer: 3
     },
-    
     {
         question: "Which data structure is used to implement recursion in programming languages?",
         choice1: "Queue",
@@ -68,7 +66,6 @@ const questions = [
         choice4: "Linked List",
         answer: 2
     },
-    
     {
         question: "What data structure is used to represent a hierarchical relationship?",
         choice1: "Stack",
@@ -108,10 +105,8 @@ const questions = [
         choice3: "Binary Search Tree",
         choice4: "Queue",
         answer: 3
-            }
-        ];
-        
-    
+    }
+];
 
 const correctBonus = 10;
 const maxQuestions = 12;
@@ -125,12 +120,12 @@ const startGame = () => {
 
 const getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter >= maxQuestions) {
-        // lets go to the end page
+        // Go to the end page
         return window.location.assign('/end.html');
     }
 
     questionCounter++;
-    acceptingAnswers = true;
+    progressText.innerText = `Question ${questionCounter}/${maxQuestions}`; // Corrected template literal
 
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
@@ -142,6 +137,13 @@ const getNewQuestion = () => {
     });
 
     availableQuestions.splice(questionIndex, 1);
+    acceptingAnswers = true;
+};
+
+const resetAnswerState = () => {
+    choices.forEach(choice => {
+        choice.parentElement.classList.remove('correct', 'incorrect');
+    });
 };
 
 choices.forEach(choice => {
@@ -152,11 +154,18 @@ choices.forEach(choice => {
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
 
-        if (parseInt(selectedAnswer) === currentQuestion.answer) {
-            score += correctBonus;
+        const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+        selectedChoice.parentElement.classList.add(classToApply);
+
+        if (classToApply === 'correct') {
+            score += correctBonus; // Update score if the answer is correct
+            scoreText.innerText = score; // Update score display
         }
 
-        getNewQuestion();
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion();
+        }, 1000); // Adjust time for visual feedback
     });
 });
 

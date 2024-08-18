@@ -26,3 +26,38 @@ color: white;
     padding: 1.5rem;
     width: 100%;
 }
+
+.correct {
+    background-color: #D0FFBC;
+}
+
+.incorrect {
+    background-color: #ffb6c1;
+}
+
+/*HUD */
+#hud {
+    display: flex;
+    justify-content: space-between;
+}
+
+#question {
+    font-size: 3em; 
+    margin-bottom: 30px;
+}
+
+
+#score {
+    font-size: 3.5em; 
+}
+
+
+#questionCounter {
+    font-size: 3.5em; 
+}
+
+#progressBar {
+    width: 20rem;
+    height: 4rem;
+    border: 0.3rem solid #ffb6c1;
+}
