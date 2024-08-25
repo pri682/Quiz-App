@@ -11,13 +11,13 @@
         "question": "What is the correct syntax for referring to an external script called 'xxx.js'?",
         "choice1": "<script href='xxx.js'>",
         "choice2": "<script name='xxx.js'>",
-       "choice3": "<script src='xxx.js'>",
+        "choice3": "<script src='xxx.js'>",
         "choice4": "<script file='xxx.js'>",
         "answer": 3
     },
     {
         "question": "How do you write 'Hi, John' in the alert box?",
-       "choice1": "msgBox('Hi, John');",
+        "choice1": "msgBox('Hi, John');",
         "choice2": "alertBox('Hi, John');",
         "choice3": "msg('Hi, John');",
         "choice4": "alert('Hi, John');",
@@ -41,7 +41,7 @@
     },
     {
         "question": "In which data structure can you perform fast insertions and deletions at both ends?",
-       "choice1": "Queue",
+        "choice1": "Queue",
         "choice2": "Stack",
         "choice3": "Deque",
         "choice4": "Array",
@@ -56,6 +56,14 @@
         "answer": 2
     },
     {
+        "question": "What is the run-time efficiency function for accessing one element (by index) in an array? For example: cout << array[k];",
+        "choice1": "O(1)",
+        "choice2": "O(n)",
+        "choice3": "O(log n)",
+        "choice4": "O(n^2)",
+        "answer": 1
+    },
+    {
         "question": "What data structure is used to represent a hierarchical relationship?",
         "choice1": "Stack",
         "choice2": "Queue",
@@ -65,7 +73,7 @@
     },
     {
         "question": "Which data structure allows for dynamic resizing and provides fast access to elements by index?",
-       "choice1": "Array",
+        "choice1": "Array",
         "choice2": "Linked List",
         "choice3": "Hash Table",
         "choice4": "Stack",
@@ -74,7 +82,7 @@
     {
         "question": "Which data structure is ideal for implementing a priority queue?",
         "choice1": "Linked List",
-       "choice2": "Heap",
+        "choice2": "Heap",
         "choice3": "Stack",
         "choice4": "Queue",
         "answer": 2
@@ -93,6 +101,30 @@
         "choice2": "Heap",
         "choice3": "Binary Search Tree",
         "choice4": "Queue",
+        "answer": 3
+    },
+    {
+        "question": "When would you get different performance (runtime efficiency) running a NumberList driver using the Linked List implementation versus using an Array implementation?",
+        "choice1": "Never, they would always perform about the same.",
+        "choice2": "Whenever the list is very large, the array version will perform better.",
+        "choice3": "When you have a lot of calls to insertNode and deleteNode, the linked list version will perform better.",
+        "answer": 3
+    },
+    {
+        "question": "Which of the following is a false statement about Abstract Data Types?",
+        "choice1": "The properties of the data and operations over the data is specified.",
+        "choice2": "The concrete representation of the data is not specified.",
+        "choice3": "It can be implemented in multiple ways.",
+        "choice4": "An array (in C++) is an Abstract Data Type.",
+        "answer": 4
+    },
+    {
+        "question": "What is wrong with the following definition of resize() for the NumberList implementation that uses a dynamic array with the following member variables: double *array; int maxSize; int count; void NumberList::resize() { double* oldArray = array; //save the address of the original array array = new double[maxSize*2]; for (int i = 0; i < count; ++i) { array[i] = oldArray[i]; } delete[] array; maxSize = 2*maxSize; }",
+        "choice1": "The second statement (array = ...) overwrites the original array elements",
+        "choice2": "The assignment statement array[i] = oldArray[i]; is reversed",
+        "choice3": "It deallocates the new array instead of the original array",
+        "choice4": "It fails to update the count variable",
+        "choice5": "There is nothing wrong with this definition of resize()",
         "answer": 3
     }
 ]
